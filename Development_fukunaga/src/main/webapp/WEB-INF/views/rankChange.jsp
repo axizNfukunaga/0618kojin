@@ -20,21 +20,32 @@
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1><span>Malicious Blog</span></h1>
+	<h1>
+		<span>Malicious Blog</span>
+	</h1>
 	<p id="center">
 		ランクを変更します<br> 変更したいランクを選択してください
 	</p>
+	<c:if test="${not empty msg}">
+		<div class="message" id="center">
+			<p class="required">${msg}</p>
+		</div>
+	</c:if>
 
 	<form:form action="rankChangeConfirm" modelAttribute="command"
 		method="GET">
+		<form:select path="rank_id" class="form-control">
+			<label class="control-label col-sm-1">会員ランク</label>
+			<div class="col-sm-2">
+				<form:option value="3" label="有料"></form:option>
+				<form:option value="1" label="無料"></form:option>
+			</div>
+		</form:select>
 		<div>
-			<form:button path="rank" value="有料" class="btn btn-primary btn-block">有料</form:button>
-		</div>
-		<div>
-			<form:button path="rank" value="無料" class="btn btn-default btn-block">無料</form:button>
+			<form:button class="btn btn-primary btn-block">確認</form:button>
 		</div>
 	</form:form>
-<br>
+	<br>
 	<form>
 		<button type="button" class="btn btn-default btn-block"
 			onclick="location.href='menu'; return false;" formmethod="get">メニューに戻る</button>

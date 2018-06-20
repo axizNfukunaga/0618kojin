@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ランク変更確認ページ</title>
+<title>完了ページ</title>
 <link href="css/common.css" rel="stylesheet">
 <!-- BootstrapのCSS読み込み -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -20,17 +20,12 @@
 </head>
 <body>
 <h1><span>Malicious Blog</span></h1>
-	<p id="center">本当に変更しますか</p>
-	<p id="center">${userRank }　→　${changeRank }</p>
-	<form:form action="rankChangeResult" modelAttribute="command" method="GET">
-		<div>
-			<form:button class="btn btn-primary btn-block">変更</form:button>
-		</div>
-	</form:form>
-	<br>
+	<p id="center">退会しました</p>
+
+<br>
 	<form>
 		<button type="button" class="btn btn-default btn-block"
-			onclick="location.href='menu'; return false;" formmethod="get">メニューに戻る</button>
+			onclick="location.href='login'; return false;" formmethod="get">ログイン画面に戻る</button>
 	</form>
 </body>
 </html>

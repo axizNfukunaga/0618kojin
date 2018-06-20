@@ -54,4 +54,14 @@ public class AuthController {
 	public String menu (@ModelAttribute("command") Form form, Model model) {
 		return "menu";
 	}
+
+	@RequestMapping("/unsub")
+	public String unsub (@ModelAttribute("command") Form form, Model model) {
+		return "unsub";
+	}
+
+	@RequestMapping("/unsubConfirm")
+	public String unsubConfirm (@ModelAttribute("command") Form form, Model model) {
+		return "unsubResult";
+	}
 }

@@ -24,7 +24,7 @@
 		登録を行います<br>すべて必須項目です
 	</p>
 	<c:if test="${not empty msg}">
-		<div class="message">
+		<div class="message" id="center">
 			<p class="required">${msg}</p>
 		</div>
 	</c:if>
@@ -35,19 +35,19 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">ユーザID</label>
 				<div class="col-sm-3">
-					<form:input path="id" class="form-control" />
+					<form:input path="id" class="form-control" value=""/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">ニックネーム</label>
 				<div class="col-sm-3">
-					<form:input path="nic" class="form-control" />
+					<form:input path="nic" class="form-control" value="${nic }"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">パスワード</label>
 				<div class="col-sm-3">
-					<form:password path="pass" class="form-control" />
+					<form:password path="pass" class="form-control" value="${pass }"/>
 				</div>
 			</div>
 			<p>

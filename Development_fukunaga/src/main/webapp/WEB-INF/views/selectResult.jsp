@@ -31,25 +31,32 @@
 			<table class="table table-striped table-bordered">
 				<thead>
 					<tr>
+						<th>ジャンル</th>
 						<th>投稿者</th>
 						<th>ひとこと</th>
-						<th>いいね数</th>
+						<th>閲覧ポイント</th>
 						<th>日付</th>
 						<th>いいね</th>
 					</tr>
 				</thead>
-				<tr>
-					<th scope="row">サメ</th>
-					<td>サメさんだぞ～</td>
-					<td>200</td>
-					<td>2018/6/13</td>
-					<td><form:form action="like" modelAttribute="command">
-							<div>
-								<form:button class="btn btn-info btn-sm btn-block">いいね</form:button>
-							</div>
-						</form:form></td>
+				<tbody>
+					<c:forEach var="list" items="${list}">
+						<tr>
+							<td>${list.genre}</td>
+							<td>${list.user_nic}</td>
+							<td>${list.contents}</td>
+							<td>${list.browsing_point}</td>
+							<td>${list.date}</td>
+							<td><form:form action="like" modelAttribute="command">
+									<div>
+										<form:hidden path="id" value="${list.user_id}"></form:hidden>
+										<form:button class="btn btn-info btn-sm btn-block">いいね</form:button>
+									</div>
+								</form:form></td>
 
-				</tr>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 	</div>

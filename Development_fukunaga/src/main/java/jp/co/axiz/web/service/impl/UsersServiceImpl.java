@@ -25,4 +25,26 @@ UsersDao usersDao;
 
 	}
 
+	@Override
+	public boolean idCheck(String id) {
+		boolean is;
+		List<Users> list=usersDao.idCheck(id);
+		is=list.size()==0;
+		return is;
+	}
+
+	@Override
+	public void regist(String id, String nic, String pass) {
+		usersDao.regist(id, nic, pass);
+
+	}
+
+	@Override
+	public void rankChange(String id, String rank_id) {
+		usersDao.rankChange(id, rank_id);
+
+	}
+
+
+
 }

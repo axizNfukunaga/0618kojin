@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>検索画面</title>
+<title>退会ページ</title>
 <link href="css/common.css" rel="stylesheet">
 <!-- BootstrapのCSS読み込み -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -23,32 +23,10 @@
 	<h1>
 		<span>Malicious Blog</span>
 	</h1>
-	<p id="center">
-		検索を行います<br> 空欄で全件表示
-	</p>
-	<c:if test="${not empty msg}">
-		<div class="message">
-			<p class="required">${msg}</p>
-		</div>
-	</c:if>
-	<form:form action="selectResult" modelAttribute="command" method="GET">
-		<div class="form-group">
-			<label class="control-label col-sm-1">ジャンル</label>
-			<div class="col-sm-2">
-				<form:select path="genre_id" class="form-control">
-					<form:option value="0" label="すべてのジャンル"></form:option>
-					<form:option value="1" label="ビジネス"></form:option>
-					<form:option value="2" label="趣味"></form:option>
-					<form:option value="3" label="芸能"></form:option>
-				</form:select>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label">検索したい言葉を入力</label>
-			<form:input path="content" class="form-control" />
-			<form:button class="btn btn-primary btn-block">検索</form:button>
-		</div>
-
+	<p id="center">退会しますか？</p>
+	<br>
+	<form:form action="unsubConfirm" modelAttribute="command">
+		<form:button class="btn btn-primary btn-block">退会する</form:button>
 	</form:form>
 	<br>
 	<form>

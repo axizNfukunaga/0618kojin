@@ -21,7 +21,9 @@
 </head>
 <body>
 <h1><span>Malicious Blog</span></h1>
-	<p id="center">メニュー</p>
+	<p id="center">ようこそ${fn:escapeXml(loginUser.user_nic)}さん</p>
+	<p id="center">あなたは${fn:escapeXml(loginUser.rank)}会員です</p>
+
 	<form>
 		<div>
 			<button type="button" class="btn btn-primary btn-lg btn-block"
@@ -43,6 +45,11 @@
 		<div>
 			<button type="button" class="btn btn-primary btn-lg btn-block"
 				onclick="location.href='logout'; return false;" formmethod="get">ログアウト</button>
+		</div>
+		<br>
+		<div>
+			<button type="button" class="btn btn-danger btn-lg btn-block"
+				onclick="location.href='unsub'; return false;" formmethod="get">退会</button>
 		</div>
 </body>
 </html>

@@ -22,7 +22,7 @@
 <h1><span>Malicious Blog</span></h1>
 	<p id="center">これでよろしいですか</p>
 	<c:if test="${not empty msg}">
-		<div class="message">
+		<div class="message" id="center">
 			<p class="required">${msg}</p>
 		</div>
 	</c:if>
@@ -32,13 +32,13 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">ユーザID</label>
 				<div class="col-sm-3">
-					<form:input path="id" class="form-control" />
+					<form:input path="id" class="form-control" value="${id }"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">ニックネーム</label>
 				<div class="col-sm-3">
-					<form:input path="nic" class="form-control" />
+					<form:input path="nic" class="form-control" value="${nic }"/>
 				</div>
 			</div>
 			<div class="form-group">

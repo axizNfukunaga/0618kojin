@@ -5,6 +5,15 @@ private String user_id;
 private String user_nic;
 private String password;
 private String rank_id;
+public String getRank() {
+	return rank;
+}
+
+public void setRank(String rank) {
+	this.rank = rank;
+}
+
+private String rank;
 
 public Users() {
 
