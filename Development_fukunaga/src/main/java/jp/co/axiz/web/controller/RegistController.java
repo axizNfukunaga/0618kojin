@@ -45,7 +45,6 @@ public class RegistController {
 			return "registConfirm";
 		}else {
 			model.addAttribute("nic", nic);
-			model.addAttribute("pass", pass);
 			model.addAttribute("msg", "入力したIDはすでに使われています");
 			return "regist";
 		}

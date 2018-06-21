@@ -42,6 +42,7 @@ public class PostController {
 			}
 		}
 
+		model.addAttribute("post", form.getContent());
 		return "postConfirm";
 	}
 
