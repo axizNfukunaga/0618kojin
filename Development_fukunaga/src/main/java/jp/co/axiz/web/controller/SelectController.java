@@ -33,18 +33,13 @@ public class SelectController {
 		String contents= form.getContent();
 		String genre_id=form.getGenre_id();
 		List<Posts> list;
-		/*if(contents==null||contents.equals("")) {
-			if(genre_id.equals("0")) {
-				list=postsService.selectAA(contents);
-			}else {
-				list=postsService.selectAG(contents,genre_id);
-			}
-		}*/
+
 			if(genre_id.equals("0")) {
 				list=postsService.selectA(contents);
 			}else {
 				list=postsService.selectG(contents,genre_id);
 			}
+
 		model.addAttribute("list",list);
 		return "selectResult";
 	}

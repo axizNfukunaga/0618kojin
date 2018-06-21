@@ -68,4 +68,32 @@ public class UsersDaoImpl implements UsersDao {
 
 	}
 
+	@Override
+	public void unsub(String id) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		try {
+			nPJT.update(
+					"DELETE FROM users WHERE user_id = :id",
+					param);
+		} catch (EmptyResultDataAccessException e) {
+
+		}
+
+	}
+
+	@Override
+	public List<Users> idSerch(String id) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		try {
+			return nPJT.query(
+					"SELECT * FROM users INNER JOIN ranks ON users.rank_id = ranks.rank_id WHERE user_id = :id",
+					param,
+					new BeanPropertyRowMapper<Users>(Users.class));
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+
+
 }

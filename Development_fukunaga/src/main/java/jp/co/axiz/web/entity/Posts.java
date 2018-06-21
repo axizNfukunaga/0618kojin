@@ -3,14 +3,28 @@ package jp.co.axiz.web.entity;
 import java.util.Date;
 
 public class Posts {
-	private Integer posts_id;
+	private Integer post_id;
 	private String user_id;
 	private String contents;
 	private Integer browsing_point;
 	private Date date;
+	public Integer getPost_id() {
+		return post_id;
+	}
+	public void setPost_id(Integer post_id) {
+		this.post_id = post_id;
+	}
+	private String rank_id;
+	public String getRank_id() {
+		return rank_id;
+	}
+	public void setRank_id(String rank_id) {
+		this.rank_id = rank_id;
+	}
 	private String genre_id;
 	private String user_nic;
 	private String genre;
+
 	public String getUser_nic() {
 		return user_nic;
 	}
@@ -26,21 +40,15 @@ public class Posts {
 	public Posts() {
 
 	}
-	public Posts(Integer posts_id, String user_id, String contents, Integer browsing_point, Date date, String genre_id) {
-		this.posts_id=posts_id;
+	public Posts(Integer post_id, String user_id, String contents, Integer browsing_point, Date date, String genre_id) {
+		this.post_id=post_id;
 		this.user_id=user_id;
 		this.contents=contents;
 		this.browsing_point=browsing_point;
 		this.date=date;
 		this.genre_id=genre_id;
 	}
-	public Integer getPosts_id() {
-		return posts_id;
-	}
 
-	public void setPosts_id(Integer posts_id) {
-		this.posts_id = posts_id;
-	}
 
 	public String getUser_id() {
 		return user_id;

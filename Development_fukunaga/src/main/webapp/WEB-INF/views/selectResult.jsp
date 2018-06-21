@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -46,10 +47,12 @@
 							<td>${list.user_nic}</td>
 							<td>${list.contents}</td>
 							<td>${list.browsing_point}</td>
-							<td>${list.date}</td>
+							<td><fmt:formatDate value="${list.date}"
+									pattern="yyyy/MM/dd" /></td>
 							<td><form:form action="like" modelAttribute="command">
 									<div>
-										<form:hidden path="id" value="${list.user_id}"></form:hidden>
+										<form:hidden path="rank_id" value="${list.rank_id}"></form:hidden>
+										<form:hidden path="post_id" value="${list.post_id}"></form:hidden>
 										<form:button class="btn btn-info btn-sm btn-block">いいね</form:button>
 									</div>
 								</form:form></td>

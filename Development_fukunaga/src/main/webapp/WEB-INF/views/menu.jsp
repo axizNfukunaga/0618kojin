@@ -20,7 +20,9 @@
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1><span>Malicious Blog</span></h1>
+	<h1>
+		<span>Malicious Blog</span>
+	</h1>
 	<p id="center">ようこそ${fn:escapeXml(loginUser.user_nic)}さん</p>
 	<p id="center">あなたは${fn:escapeXml(loginUser.rank)}会員です</p>
 
@@ -51,5 +53,6 @@
 			<button type="button" class="btn btn-danger btn-lg btn-block"
 				onclick="location.href='unsub'; return false;" formmethod="get">退会</button>
 		</div>
+	</form>
 </body>
 </html>

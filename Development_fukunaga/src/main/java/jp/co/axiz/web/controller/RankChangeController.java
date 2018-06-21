@@ -1,5 +1,7 @@
 package jp.co.axiz.web.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +32,6 @@ public class RankChangeController {
 	@RequestMapping(value="/rankChangeConfirm",method = RequestMethod.GET)
 	public String Confirm(@ModelAttribute("command") Form form, Model model) {
 		//同じもの選んでないか判定
-		if(session.getAttribute("changeCheck")!=null) {
-			model.addAttribute("msg","ランクを変更したい場合は一度ログアウトしてください");
-			return "rankChange";
-		}
 		Users loginUser=(Users)session.getAttribute("loginUser");
 		String userRank=loginUser.getRank_id();
 		String changeRank=form.getRank_id();
@@ -64,10 +62,18 @@ public class RankChangeController {
 		String rank_id=(String)session.getAttribute("userRankId");
 		if(rank_id.equals("3")) {
 			rank_id="2";
+			session.setAttribute("flg", true);
+		}else {
+			session.removeAttribute("flg");
 		}
 		usersService.rankChange(id,rank_id);
 		session.removeAttribute("userRankId");
-		session.setAttribute("changeCheck", true);
+
+		List<Users> list=usersService.serchId(id);
+		if(list.size()!=0) {
+			session.setAttribute("loginUser", list.get(0));
+		}
+
 		return "rankChangeResult";
 	}
 

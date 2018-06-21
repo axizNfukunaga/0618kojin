@@ -10,6 +10,15 @@ private String rank;
 private String like;
 private String genre_id;
 private String rank_id;
+private Integer post_id;
+
+public Integer getPost_id() {
+	return post_id;
+}
+
+public void setPost_id(Integer post_id) {
+	this.post_id = post_id;
+}
 
 public String getRank_id() {
 	return rank_id;

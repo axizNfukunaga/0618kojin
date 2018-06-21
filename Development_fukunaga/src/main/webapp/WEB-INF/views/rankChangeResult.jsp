@@ -20,11 +20,15 @@
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1><span>Malicious Blog</span></h1>
-	<p id="center">あなたは仮有料会員になりました</p>
-	<p id="center">以下の口座に○○円（1年分）振り込んでください</p>
-	<p id="center">○○銀行　○○支店　所有者○○</p>
-	<p id="center">口座番号：0000-0000-0000-0000</p>
+	<h1>
+		<span>Malicious Blog</span>
+	</h1>
+	<c:if test="${not empty flg}">
+		<p id="center">あなたは仮有料会員になりました</p>
+		<p id="center">以下の口座に○○円（1年分）振り込んでください</p>
+		<p id="center">○○銀行 ○○支店 所有者○○</p>
+		<p id="center">口座番号：0000-0000-0000-0000</p>
+	</c:if>
 	<br>
 	<form>
 		<button type="button" class="btn btn-default btn-block"

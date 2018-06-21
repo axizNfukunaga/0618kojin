@@ -50,11 +50,11 @@ public class PostsDaoImpl implements PostsDao {
 		try {
 			List<Posts> list=nPJT.query(
 					"SELECT * FROM"
-					+ " (posts JOIN genres ON posts.genre_id=genres.genre_id)"
-					+ "  JOIN users ON posts.user_id=users.user_id"
-					+ " WHERE posts.contents LIKE :contents",
-					param,
-					new BeanPropertyRowMapper<Posts>(Posts.class));
+							+ " (posts JOIN genres ON posts.genre_id=genres.genre_id)"
+							+ "  JOIN users ON posts.user_id=users.user_id"
+							+ " WHERE posts.contents LIKE :contents",
+							param,
+							new BeanPropertyRowMapper<Posts>(Posts.class));
 
 			return list;
 		} catch (EmptyResultDataAccessException e) {
@@ -64,20 +64,123 @@ public class PostsDaoImpl implements PostsDao {
 
 	@Override
 	public List<Posts> selectG(String contents, String genre_id) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		String content= "%"+contents+"%";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("contents", content).addValue("genre_id", genre_id);
+		try {
+			List<Posts> list=nPJT.query(
+					"SELECT * FROM"
+							+ " (posts JOIN genres ON posts.genre_id=genres.genre_id)"
+							+ "  JOIN users ON posts.user_id=users.user_id"
+							+ " WHERE genres.genre_id=:genre_id"
+							+ " AND posts.contents LIKE :contents",
+							param,
+							new BeanPropertyRowMapper<Posts>(Posts.class));
+
+			return list;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 	@Override
-	public List<Posts> selectAA(String contents) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+	public void unsub(String id) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		try {
+			nPJT.update(
+					"DELETE FROM posts WHERE user_id = :id",
+					param);
+		} catch (EmptyResultDataAccessException e) {
+
+		}
+
 	}
 
 	@Override
-	public List<Posts> selectAG(String contents, String genre_id) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+	public List<Posts> orderA() {
+		SqlParameterSource param = new MapSqlParameterSource();
+		try {
+			List<Posts> list=nPJT.query(
+					"SELECT * FROM"
+							+ " (posts JOIN genres ON posts.genre_id=genres.genre_id)"
+							+ "  JOIN users ON posts.user_id=users.user_id"
+							+ " ORDER BY CAST(posts.browsing_point AS int) DESC",
+							param,
+							new BeanPropertyRowMapper<Posts>(Posts.class));
+
+			return list;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<Posts> orderG(String genre_id) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("genre_id", genre_id);
+		try {
+			List<Posts> list=nPJT.query(
+					"SELECT * FROM"
+							+ " (posts JOIN genres ON posts.genre_id=genres.genre_id)"
+							+ "  JOIN users ON posts.user_id=users.user_id"
+							+ " WHERE posts.genre_id=:genre_id"
+							+ " ORDER BY CAST(posts.browsing_point AS int) DESC",
+							param,
+							new BeanPropertyRowMapper<Posts>(Posts.class));
+
+			return list;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public Integer getPoint(Integer post_id) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("post_id", post_id);
+		try {
+			List<Posts> list=nPJT.query(
+					"SELECT * FROM posts WHERE post_id = :post_id",
+					param,
+					new BeanPropertyRowMapper<Posts>(Posts.class));
+			if(list.size()==0) {
+				return null;
+			}else {
+				return list.get(0).getBrowsing_point();
+			}
+
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public void pointUp(Integer post_id, Integer point) {
+		SqlParameterSource param = new MapSqlParameterSource().addValue("post_id", post_id).addValue("point", point);
+		try {
+			nPJT.update(
+					"UPDATE posts SET browsing_point=:point WHERE post_id = :post_id",
+					param);
+		} catch (EmptyResultDataAccessException e) {
+
+		}
+
+	}
+
+	@Override
+	public List<Posts> orderD() {
+		SqlParameterSource param = new MapSqlParameterSource();
+		try {
+			List<Posts> list=nPJT.query(
+					"SELECT * FROM"
+							+ " (posts JOIN genres ON posts.genre_id=genres.genre_id)"
+							+ "  JOIN users ON posts.user_id=users.user_id"
+							+ " WHERE posts.date = CURRENT_DATE"
+							+ " ORDER BY CAST(posts.browsing_point AS int) DESC",
+							param,
+							new BeanPropertyRowMapper<Posts>(Posts.class));
+
+			return list;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 }

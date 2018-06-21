@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -23,32 +24,74 @@
 	<h1>
 		<span>Malicious Blog</span>
 	</h1>
-	<p>いいねポイントランキングを表示</p>
+	<p id="center">閲覧ポイントランキング</p>
+	<form:form action="ranking" modelAttribute="command" method="GET">
+		<div class="form-group">
+			<label class="control-label col-sm-1">ジャンル</label>
+			<div class="col-sm-2">
+				<form:select path="genre_id" class="form-control">
+					<form:option value="0" label="すべてのジャンル"></form:option>
+					<form:option value="1" label="ビジネス"></form:option>
+					<form:option value="2" label="趣味"></form:option>
+					<form:option value="3" label="芸能"></form:option>
+				</form:select>
+			</div>
+		</div>
+		<div class="form-group">
+			<form:button class="btn btn-primary btn-block">ジャンル変更</form:button>
+		</div>
+	</form:form>
+	<c:if test="${loginUser.rank_id == 3}">
+		<form>
+			<div>
+				<button type="button" class="btn btn-danger btn-lg btn-block"
+					onclick="location.href='dateRank'; return false;" formmethod="post">有料会員限定！本日のランキング！</button>
+			</div>
+		</form>
+	</c:if>
 	<div class="container" id="center">
 		<div class="table-responsive">
 			<table class="table table-striped table-bordered">
 				<thead>
 					<tr>
-						<th>ランキング</th>
+						<th>順位</th>
 						<th>投稿者</th>
 						<th>ひとこと</th>
-						<th>いいね数</th>
+						<th>閲覧ポイント</th>
 						<th>日付</th>
 						<th>いいね</th>
 					</tr>
 				</thead>
-				<tr>
-					<th>1</th>
-					<th scope="row">サメ</th>
-					<td>サメさんだぞ～</td>
-					<td>200</td>
-					<td>2018/6/13</td>
-					<td><form:form action="like" modelAttribute="command">
-							<div>
-								<form:button class="btn btn-info btn-sm btn-block">いいね</form:button>
-							</div>
-						</form:form></td>
-				</tr>
+				<tbody>
+					<%
+						int rank = 0;
+					%>
+					<c:forEach var="list" items="${list}">
+						<tr>
+							<%
+								rank++;
+							%>
+							<td>
+								<%
+									out.println(rank);
+								%>位
+							</td>
+							<td>${list.user_nic}</td>
+							<td>${list.contents}</td>
+							<td>${list.browsing_point}</td>
+							<td><fmt:formatDate value="${list.date}"
+									pattern="yyyy/MM/dd" /></td>
+							<td><form:form action="like" modelAttribute="command">
+									<div>
+										<form:hidden path="rank_id" value="${list.rank_id}"></form:hidden>
+										<form:hidden path="post_id" value="${list.post_id}"></form:hidden>
+										<form:button class="btn btn-info btn-sm btn-block">いいね</form:button>
+									</div>
+								</form:form></td>
+
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 	</div>

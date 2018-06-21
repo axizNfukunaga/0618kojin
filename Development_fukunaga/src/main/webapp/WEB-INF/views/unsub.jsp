@@ -24,6 +24,7 @@
 		<span>Malicious Blog</span>
 	</h1>
 	<p id="center">退会しますか？</p>
+	<p id="center">あなたの投稿はすべて削除されます</p>
 	<br>
 	<form:form action="unsubConfirm" modelAttribute="command">
 		<form:button class="btn btn-primary btn-block">退会する</form:button>

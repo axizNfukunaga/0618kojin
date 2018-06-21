@@ -37,15 +37,37 @@ public class PostsServiceImpl implements PostsService {
 	}
 
 	@Override
-	public List<Posts> selectAA(String contents) {
-		List<Posts> list=postsDao.selectAA(contents);
+	public List<Posts> orderA() {
+		List<Posts> list=postsDao.orderA();
 		return list;
+
 	}
 
 	@Override
-	public List<Posts> selectAG(String contents, String genre_id) {
-		List<Posts> list=postsDao.selectAG(contents,genre_id);
+	public List<Posts> orderG(String genre_id) {
+		List<Posts> list=postsDao.orderG(genre_id);
+		return list;
+
+	}
+
+	@Override
+	public Integer getPoint(Integer post_id) {
+
+		return postsDao.getPoint(post_id);
+	}
+
+	@Override
+	public void pointUp(Integer post_id, Integer point) {
+		postsDao.pointUp(post_id, point);
+
+	}
+
+	@Override
+	public List<Posts> orderD() {
+		List<Posts> list=postsDao.orderD();
 		return list;
 	}
+
+
 
 }

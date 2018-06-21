@@ -62,6 +62,14 @@ public class AuthController {
 
 	@RequestMapping("/unsubConfirm")
 	public String unsubConfirm (@ModelAttribute("command") Form form, Model model) {
+
+		Users loginUser =(Users)session.getAttribute("loginUser");
+		String id=loginUser.getUser_id();
+
+		usersService.unsub(id);
+
+		session.invalidate();
+
 		return "unsubResult";
 	}
 }

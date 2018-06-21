@@ -5,13 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jp.co.axiz.web.dao.PostsDao;
 import jp.co.axiz.web.dao.UsersDao;
 import jp.co.axiz.web.entity.Users;
 import jp.co.axiz.web.service.UsersService;
 @Service
 public class UsersServiceImpl implements UsersService {
-@Autowired
-UsersDao usersDao;
+	@Autowired
+	UsersDao usersDao;
+	@Autowired
+	PostsDao postsDao;
 	@Override
 	public Users login(String id, String pass) {
 		boolean success;
@@ -42,6 +45,19 @@ UsersDao usersDao;
 	@Override
 	public void rankChange(String id, String rank_id) {
 		usersDao.rankChange(id, rank_id);
+
+	}
+
+	@Override
+	public void unsub(String id) {
+		usersDao.unsub(id);
+		postsDao.unsub(id);
+
+	}
+
+	@Override
+	public List<Users> serchId(String id) {
+		return usersDao.idSerch(id);
 
 	}
 
