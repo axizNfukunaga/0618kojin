@@ -59,7 +59,7 @@
 	</p>
 	<c:if test="${not empty msg}">
 		<div class="message">
-			<p class="required">${msg}</p>
+			<p id="center">${msg}</p>
 		</div>
 	</c:if>
 	<div class="container">
