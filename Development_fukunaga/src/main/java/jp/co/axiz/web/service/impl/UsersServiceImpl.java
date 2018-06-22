@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import jp.co.axiz.web.dao.PostsDao;
 import jp.co.axiz.web.dao.UsersDao;
@@ -15,6 +16,8 @@ public class UsersServiceImpl implements UsersService {
 	UsersDao usersDao;
 	@Autowired
 	PostsDao postsDao;
+
+	@Transactional
 	@Override
 	public Users login(String id, String pass) {
 		boolean success;
@@ -28,6 +31,7 @@ public class UsersServiceImpl implements UsersService {
 
 	}
 
+	@Transactional
 	@Override
 	public boolean idCheck(String id) {
 		boolean is;
@@ -36,18 +40,21 @@ public class UsersServiceImpl implements UsersService {
 		return is;
 	}
 
+	@Transactional
 	@Override
 	public void regist(String id, String nic, String pass) {
 		usersDao.regist(id, nic, pass);
 
 	}
 
+	@Transactional
 	@Override
 	public void rankChange(String id, String rank_id) {
 		usersDao.rankChange(id, rank_id);
 
 	}
 
+	@Transactional
 	@Override
 	public void unsub(String id) {
 		usersDao.unsub(id);
@@ -55,6 +62,7 @@ public class UsersServiceImpl implements UsersService {
 
 	}
 
+	@Transactional
 	@Override
 	public List<Users> serchId(String id) {
 		return usersDao.idSerch(id);
