@@ -55,6 +55,8 @@
 	<p id="center">
 		ランクを変更します<br> 変更したいランクを選択してください
 	</p>
+	<p id="center">有料会員になるとポイント増加量2倍！<br>
+	一日の投稿数限定も解除されます！</p>
 	<c:if test="${not empty msg}">
 		<div class="message" id="center">
 			<p class="required">${msg}</p>
