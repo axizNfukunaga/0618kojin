@@ -1,0 +1,42 @@
+INSERT INTO users VALUES (1, '田中', '0311112222');		//値を追加(colが3のとき
+CREATE TABLE users (user_id INT PRIMARY KEY,user_name VARCHAR(50),tel_no VARCHAR(50));		//userテーブルを作成
+SELECT * FROM users;		//usersを全て表示
+SELECT user_name FROM users;		//nameを表示
+SELECT * FROM users WHERE user_id= 1;		//user_idが1のものを表示
+INSERT INTO users(カラム名1、カラム名2、...) VALUES (1, '田中', '0311112222');		//カラム名を指定して挿入
+UPDATE users SET tel_no= '0111122223' WHERE user_id= 20;	//user_idが20のtel_noに挿入
+DELETE FROM users WHERE user_id =20;		//user_idが20の場所を削除
+
+
+UPDATE emp SET job= 'engineer' WHERE deptno=20 OR deptno=30;
+(001, '松本', 'Java',30),
+
+
+INSERT INTO users VALUES
+(001, '松本', 'Java','Tokyo'),
+(002, '平岡', 'Java','Saitama'), 
+(003, '蓮見', 'Java','Tokyo'), 
+(004, '須貝', 'Java','Kanagawa'),
+(005, '野田', 'Java','Tokyo');
+
+INSERT INTO smtable01 VALUES
+(1612, '小波', '総務部'),
+(1610, '伊井田', '開発部'), 
+(1609, '田中', '営業部'), 
+(1622, '園田', '開発部');
+
+UPDATE smtable01 SET department=(SELECT department FROM smtable01 WHERE name='大原' ) ;
+
+SELECT * FROM smtable01 WHERE name LIKE '%木%';
+
+INSERT INTO SELECT * FROM smtable02;
+
+SELECT * FROM smtable01 ORDER BY name;
+
+DELETE FROM smtable01 WHERE ORDER BY name LIMIT 4;
+DELETE FROM smtable01 WHERE (
+name IN (SELECT name FROM smtable01 ORDER BY name LIMIT 4)
+);
+
+SELECT * FROM smtable01 ORDER BY id DESC LIMIT 1
+SELECT * FROM smtable01 WHERE department='開発部'  ORDER BY id DESC LIMIT 1;
